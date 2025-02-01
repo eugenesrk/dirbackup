@@ -1,0 +1,13 @@
+[Unit]
+Description=directory backup
+
+[Service]
+User=dirbackup
+WorkingDirectory=/opt/backups/
+ExecStart=/usr/bin/drbserver
+Restart=always
+RestartSec=3
+Environment="API_KEY=" # set yours
+
+[Install]
+WantedBy=multi-user.target

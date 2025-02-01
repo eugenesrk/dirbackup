@@ -1,0 +1,19 @@
+[Unit]
+Description=directory backup
+After=network.target
+
+[Service]
+Type=oneshot
+User=dirbackup # replace with your username
+WorkingDirectory=/tmp/
+RemainAfterExit=true
+ExecStop=/usr/bin/drbackup
+Environment="API_KEY=" # insert yours
+Environment="SERVER=http://192.168.1.2:14800/upload-backup"
+Environment="BACKUP_DIR=/opt/projects"
+Environment="EXCLUDE_DIRS=node_modules:.cache"
+Environment="EXCLUDE_EXTENSIONS=.bin:.bak:.old"
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target
